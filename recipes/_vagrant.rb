@@ -13,7 +13,7 @@ kernel_ver = node['kernel']['release'].sub(".el7.#{node['kernel']['machine']}", 
 %w( kernel-headers kernel-devel ).each do |pkg|
     package pkg do
       #version "#{ node['kernel']['release']}"
-      action :upgrade
+      #action :upgrade
       # :latest
       #kernel_ver
     end
@@ -42,6 +42,11 @@ end
 package "VirtualBox-5.0" do
   source "/root/VirtualBox-5.0-#{node['rexden']['virtualbox_rel']}_el7-1.x86_64.rpm"
   action :install
+end
+
+execute 'build the kernel drivers' do
+  command '/usr/lib/virtualbox/vboxdrv.sh setup >/var/log/vboxdrv.log 2>&1'
+  not_if { File.exists?("/var/log/vboxdrv.log") }
 end
 
 # vi: expandtab ts=2 

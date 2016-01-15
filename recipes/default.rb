@@ -8,9 +8,9 @@ include_recipe 'chef-dk'
 
 case node[:os]
 when 'linux'
-  include_recipe 'rexcore::_graphical'
+  include_recipe 'rexcore::graphical'
   include_recipe 'rexdev::_vagrant'
-  include_recipe 'rexcore::_docker'
+  include_recipe 'rexcore::docker'
   include_recipe 'rexdev::_hub'
 when 'windows'
   include_recipe 'rexdev::_windows'
