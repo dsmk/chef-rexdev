@@ -12,6 +12,7 @@ when 'linux'
   include_recipe 'rexdev::_vagrant'
   include_recipe 'rexcore::docker'
   include_recipe 'rexdev::_hub'
+  include_recipe 'rexdev::_packer'
 when 'windows'
   include_recipe 'rexdev::_windows'
 end
